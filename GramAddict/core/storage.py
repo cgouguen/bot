@@ -70,14 +70,14 @@ class Storage:
         whitelist_path = os.path.join(self.account_path, FILENAME_WHITELIST)
         if os.path.exists(whitelist_path):
             with open(whitelist_path, encoding="utf-8") as file:
-                self.whitelist = [line.rstrip() for line in file]
+                self.whitelist = [line.rstrip() for line in file if line != '\n' and not line.startswith('#')]
         else:
             self.whitelist = []
 
         blacklist_path = os.path.join(self.account_path, FILENAME_BLACKLIST)
         if os.path.exists(blacklist_path):
             with open(blacklist_path, encoding="utf-8") as file:
-                self.blacklist = [line.rstrip() for line in file]
+                self.blacklist = [line.rstrip() for line in file if line != '\n' and not line.startswith('#')]
         else:
             self.blacklist = []
 
